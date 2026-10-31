@@ -941,20 +941,21 @@ groups.forEach(function(category) {
 
 let showingFavorites = false;
 
-function showFavorites() {
-    showingFavorites = !showingFavorites;
-
+function applyFilters() {
     const cards = document.querySelectorAll(".topic");
+    const searchValue = search.value.toLowerCase();
 
     let count = 0;
 
     cards.forEach(function(card) {
+        const text = card.textContent.toLowerCase();
         const star = card.querySelector(".favorite-btn");
 
-        const isFavorite = star &&
-                           star.classList.contains("active");
+        const matchesSearch = text.includes(searchValue);
+        const matchesFavorite = !showingFavorites ||
+                                star.classList.contains("active");
 
-        if (!showingFavorites || isFavorite) {
+        if (matchesSearch && matchesFavorite) {
             card.style.display = "block";
             count++;
         } else {
@@ -975,6 +976,10 @@ function showFavorites() {
     noResults.style.display = count === 0 ? "block" : "none";
 }
 
+function showFavorites() {
+    showingFavorites = !showingFavorites;
+    applyFilters();
+}
 function showRandomFormula() {
     const cards = document.querySelectorAll(".topic");
 
