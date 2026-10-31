@@ -792,35 +792,7 @@ body.dark-mode .search-box input {
     const formulas = document.querySelectorAll(".topic");
 
     const noResults = document.getElementById("no-results");
-
-    search.addEventListener("input", function() {
-
-        const value = search.value.toLowerCase();
-
-        let count = 0;
-
-        formulas.forEach(function(formula) {
-
-            const text = formula.textContent.toLowerCase();
-
-            if (text.includes(value)) {
-                formula.style.display = "block";
-                count++;
-            }
-            else {
-                formula.style.display = "none";
-            }
-
-        });
-
-        if (count === 0) {
-            noResults.style.display = "block";
-        }
-        else {
-            noResults.style.display = "none";
-        }
-
-    });
+search.addEventListener("input", applyFilters);
 const themeToggle = document.getElementById("theme-toggle");
 
 themeToggle.addEventListener("click", function() {
