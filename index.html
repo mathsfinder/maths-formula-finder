@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Maths Formula Finder</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f1f5f9;
+        color: #172b4d;
+    }
+
+    header {
+        background-color: #102b46;
+        color: white;
+        text-align: center;
+        padding: 35px;
+    }
+
+    main {
+        max-width: 900px;
+        margin: 30px auto;
+        padding: 20px;
+    }
+
+    .topic {
+        background-color: white;
+        padding: 25px;
+        margin: 20px 0;
+        border-radius: 12px;
+        box-shadow: 0 3px 10px #00000010;
+    }
+
+    h2 {
+        color: #174b91;
+    }
+
+    /* Dark Mode */
+
+body.dark-mode {
+    background-color: #111827;
+    color: #f1f5f9;
+}
+
+body.dark-mode .topic {
+    background-color: #1e293b;
+    color: white;
+}
+
+body.dark-mode .formula {
+    background-color: #334155;
+    color: #f8fafc;
+}
+
+body.dark-mode h2 {
+    color: #93c5fd;
+}
+
+body.dark-mode .search-box input {
+    background-color: #1e293b;
+    color: white;
+    border-color: #475569;
+}
+
+#theme-toggle {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+.copy-btn {
+    background-color: #174b91;
+    color: white;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.copy-btn:hover {
+    background-color: #102b46;
+}
+
+/* Favorites Star Button */
+
+.favorite-btn {
+    background: transparent;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+    color: #94a3b8;
+    margin-left: 8px;
+    transition: transform 0.2s;
+}
+
+.favorite-btn:hover {
+    transform: scale(1.2);
+}
+
+.favorite-btn.active {
+    color: #f5b301;
+}
+#formula-list {
+    display: block;
+}
+
+.formula-group {
+    margin-bottom: 40px;
+}
+
+.group-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #dce8f7;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.group-heading h2 {
+    margin: 0;
+    color: #102b46;
+}
+
+.formula-count {
+    background-color: #dce8f7;
+    color: #174b91;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.group-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+#random-result {
+    background-color: white;
+    padding: 25px;
+    margin: 25px 0;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px #00000010;
+    border-left: 5px solid #174b91;
+}
+
+#random-title {
+    color: #174b91;
+}
+
+#random-formula {
+    background-color: #eaf1fa;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.search-box {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+}
+#formula-list {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit, minmax(250px, 1fr)
+    );
+    gap: 20px;
+}
+
+.formula {
+    background-color: #eaf1fa;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 19px;
+    font-weight: bold;
+    color: #102b46;
+}
+
+.topic h3 {
+    font-size: 14px;
+    color: #64748b;
+}
+</style>
+
+<body>
+    <header>
+    <h1>∑ Maths Formula Finder</h1>
+    <p>Your quick mathematics reference</p>
+    <p>For First-Year Engineering Students</p>
+
+    <button id="theme-toggle">🌙 Dark Mode</button>
+</header>
+
+
+<main>
+
+    <main>
+
+    <div class="search-box">
+        <input
+            type="text"
+            id="search"
+            placeholder="Search formulas... (e.g. derivative, sin)"
+        >
+    </div>
+
+    <div class="filters">
+    <button onclick="showFavorites()">⭐ My Favorites</button>
+    <button onclick="showRandomFormula()">🎲 Random Formula</button>
+</div>
+
+<div id="random-result" style="display:none;">
+    <h2 id="random-title"></h2>
+    <p id="random-formula"></p>
+    <button onclick="showRandomFormula()">Try Another Formula</button>
+</div>
+
+    <div id="formula-list">
+
+        <div class="topic">
+            <h2>Power Rule</h2>
+            <h3>Calculus - Differentiation</h3>
+            <p class="formula">d(xⁿ)/dx = nxⁿ⁻¹</p>
+            <p>Used to differentiate powers of x.</p>
+        </div>
+
+        <div class="topic">
+            <h2>Derivative of sin x</h2>
+            <h3>Calculus - Differentiation</h3>
+            <p class="formula">d(sin x)/dx = cos x</p>
+            <p>Derivative of the sine function.</p>
+        </div>
+
+        <div class="topic">
+            <h2>Integral of sin x</h2>
+            <h3>Calculus - Integration</h3>
+            <p class="formula">∫sin x dx = -cos x + C</p>
+            <p>Standard integration formula.</p>
+        </div>
+
+        <div class="topic">
+            <h2>Pythagorean Identity</h2>
+            <h3>Trigonometry</h3>
+            <p class="formula">sin²x + cos²x = 1</p>
+            <p>One of the fundamental trigonometric identities.</p>
+        </div>
+
+        <div class="topic">
+            <h2>Double Angle Formula</h2>
+            <h3>Trigonometry</h3>
+            <p class="formula">sin 2x = 2 sin x cos x</p>
+            <p>Formula for the sine of twice an angle.</p>
+        </div>
+        <!-- Additional Integration Formulas -->
+
+<div class="topic">
+    <h2>Exponential Integration</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ aˣ dx = aˣ / ln(a) + C</p>
+    <p>For a &gt; 0 and a ≠ 1.</p>
+</div>
+
+<div class="topic">
+    <h2>Logarithmic Integration</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ (1/x) dx = ln|x| + C</p>
+</div>
+
+<div class="topic">
+    <h2>Cosecant-Cotangent Integration</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ cosec x cot x dx = −cosec x + C</p>
+</div>
+
+<div class="topic">
+    <h2>Inverse Tangent Integration</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ dx/(1 + x²) = tan⁻¹x + C</p>
+</div>
+
+<div class="topic">
+    <h2>Inverse Sine Integration</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ dx/√(1 − x²) = sin⁻¹x + C</p>
+</div>
+
+<div class="topic">
+    <h2>Inverse Secant Integration</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ dx/[x√(x² − 1)] = sec⁻¹x + C</p>
+    <p>For x &gt; 1.</p>
+</div>
+
+<div class="topic">
+    <h2>Hyperbolic Sine Integration</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ sinh x dx = cosh x + C</p>
+</div>
+
+<div class="topic">
+    <h2>Hyperbolic Cosine Integration</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ cosh x dx = sinh x + C</p>
+</div>
+
+<div class="topic">
+    <h2>Cotangent Integration</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ cot x dx = ln|sin x| + C</p>
+</div>
+
+<div class="topic">
+    <h2>Tangent Integration</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ tan x dx = ln|sec x| + C</p>
+</div>
+
+<div class="topic">
+    <h2>Secant Integration</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ sec x dx = ln|sec x + tan x| + C</p>
+</div>
+
+<div class="topic">
+    <h2>Cosecant Integration</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ cosec x dx = ln|cosec x − cot x| + C</p>
+</div>
+
+<div class="topic">
+    <h2>Logarithmic Integration Rule</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ [f′(x)/f(x)] dx = ln|f(x)| + C</p>
+</div>
+
+<div class="topic">
+    <h2>Integration by Substitution</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ f(g(x)) g′(x) dx = ∫ f(u) du</p>
+    <p>Put u = g(x), so du = g′(x) dx.</p>
+</div>
+
+<!-- Additional Differentiation Formulas -->
+
+<div class="topic">
+    <h2>Derivative of Secant x</h2>
+    <h3>Calculus - Differentiation</h3>
+    <p class="formula">d(sec x)/dx = sec x tan x</p>
+</div>
+
+<div class="topic">
+    <h2>Derivative of Cotangent x</h2>
+    <h3>Calculus - Differentiation</h3>
+    <p class="formula">d(cot x)/dx = −cosec² x</p>
+</div>
+
+<div class="topic">
+    <h2>Derivative of Cosecant x</h2>
+    <h3>Calculus - Differentiation</h3>
+    <p class="formula">d(cosec x)/dx = −cosec x cot x</p>
+</div>
+
+<div class="topic">
+    <h2>Derivative of Inverse Sine</h2>
+    <h3>Calculus - Differentiation</h3>
+    <p class="formula">d(sin⁻¹ x)/dx = 1/√(1 − x²)</p>
+</div>
+
+<div class="topic">
+    <h2>Derivative of Inverse Cosine</h2>
+    <h3>Calculus - Differentiation</h3>
+    <p class="formula">d(cos⁻¹ x)/dx = −1/√(1 − x²)</p>
+</div>
+
+<div class="topic">
+    <h2>Derivative of Inverse Tangent</h2>
+    <h3>Calculus - Differentiation</h3>
+    <p class="formula">d(tan⁻¹ x)/dx = 1/(1 + x²)</p>
+</div>
+
+<div class="topic">
+    <h2>Derivative of Inverse Cotangent</h2>
+    <h3>Calculus - Differentiation</h3>
+    <p class="formula">d(cot⁻¹ x)/dx = −1/(1 + x²)</p>
+</div>
+
+<div class="topic">
+    <h2>Derivative of Inverse Secant</h2>
+    <h3>Calculus - Differentiation</h3>
+    <p class="formula">d(sec⁻¹ x)/dx = 1/(|x|√(x² − 1))</p>
+</div>
+
+<div class="topic">
+    <h2>Derivative of Inverse Cosecant</h2>
+    <h3>Calculus - Differentiation</h3>
+    <p class="formula">d(cosec⁻¹ x)/dx = −1/(|x|√(x² − 1))</p>
+</div>
+
+<div class="topic">
+    <h2>Derivative of a to the Power x</h2>
+    <h3>Calculus - Differentiation</h3>
+    <p class="formula">d(aˣ)/dx = aˣ ln a</p>
+</div>
+
+<div class="topic">
+    <h2>Derivative of Logarithm Base a</h2>
+    <h3>Calculus - Differentiation</h3>
+    <p class="formula">d(logₐ x)/dx = 1/(x ln a)</p>
+</div>
+
+<div class="topic">
+    <h2>Derivative of Reciprocal x</h2>
+    <h3>Calculus - Differentiation</h3>
+    <p class="formula">d(1/x)/dx = −1/x²</p>
+</div>
+
+<div class="topic">
+    <h2>Derivative of Square Root x</h2>
+    <h3>Calculus - Differentiation</h3>
+    <p class="formula">d(√x)/dx = 1/(2√x)</p>
+</div>
+
+<div class="topic">
+    <h2>Derivative of a Constant</h2>
+    <h3>Calculus - Differentiation</h3>
+    <p class="formula">d(c)/dx = 0</p>
+</div>
+
+<!-- Additional Trigonometry Formulas -->
+
+<!-- 1. Negative Angle Identities -->
+
+<div class="topic">
+    <h2>Sine of Negative Angle</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">sin(−θ) = −sin θ</p>
+</div>
+
+<div class="topic">
+    <h2>Cosine of Negative Angle</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">cos(−θ) = cos θ</p>
+</div>
+
+<div class="topic">
+    <h2>Tangent of Negative Angle</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">tan(−θ) = −tan θ</p>
+</div>
+
+<div class="topic">
+    <h2>Cosecant of Negative Angle</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">cosec(−θ) = −cosec θ</p>
+</div>
+
+<div class="topic">
+    <h2>Cotangent of Negative Angle</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">cot(−θ) = −cot θ</p>
+</div>
+
+<div class="topic">
+    <h2>Secant of Negative Angle</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">sec(−θ) = sec θ</p>
+</div>
+
+<!-- 2. Angle and Periodic Identities -->
+
+<div class="topic">
+    <h2>Sine of 270° Minus Angle</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">sin(270° − θ) = −cos θ</p>
+</div>
+
+<div class="topic">
+    <h2>Sine of 180° Plus Angle</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">sin(180° + θ) = −sin θ</p>
+</div>
+
+<div class="topic">
+    <h2>Sine of 360° Plus Angle</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">sin(360° + θ) = sin θ</p>
+</div>
+
+<div class="topic">
+    <h2>Sine of 3π Plus Angle</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">sin(3π + θ) = −sin θ</p>
+</div>
+
+<div class="topic">
+    <h2>Sine at Multiples of π</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">sin(nπ) = 0, n ∈ Z</p>
+</div>
+
+<div class="topic">
+    <h2>Cosine at Even Multiples of π</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">cos(2nπ) = 1, n ∈ Z</p>
+</div>
+
+<div class="topic">
+    <h2>Cosine at Odd Multiples of π</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">cos((2n − 1)π) = −1, n ∈ Z</p>
+</div>
+
+<!-- 3. Other Pythagorean Identities -->
+
+<div class="topic">
+    <h2>Secant and Tangent Identity</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">sec²θ − tan²θ = 1</p>
+</div>
+
+<div class="topic">
+    <h2>Cosecant and Cotangent Identity</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">cosec²θ − cot²θ = 1</p>
+</div>
+
+<!-- 4. Addition and Subtraction of Tangent -->
+
+<div class="topic">
+    <h2>Tangent Addition Formula</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">tan(A + B) = (tan A + tan B)/(1 − tan A tan B)</p>
+</div>
+
+<div class="topic">
+    <h2>Tangent Subtraction Formula</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">tan(A − B) = (tan A − tan B)/(1 + tan A tan B)</p>
+</div>
+
+<!-- 5. Double and Triple Angle Formulas -->
+
+<div class="topic">
+    <h2>Cosine Double Angle Formula</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">cos 2A = 1 − 2sin²A = 2cos²A − 1</p>
+</div>
+
+<div class="topic">
+    <h2>Tangent Double Angle Formula</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">tan 2A = 2tan A/(1 − tan²A)</p>
+</div>
+
+<div class="topic">
+    <h2>Sine Triple Angle Formula</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">sin 3A = 3sin A − 4sin³A</p>
+</div>
+
+<div class="topic">
+    <h2>Cosine Triple Angle Formula</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">cos 3A = 4cos³A − 3cos A</p>
+</div>
+
+<div class="topic">
+    <h2>Tangent Triple Angle Formula</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">tan 3A = (3tan A − tan³A)/(1 − 3tan²A)</p>
+</div>
+
+<!-- 6. Half Angle Formulas -->
+
+<div class="topic">
+    <h2>Sine Half Angle Formula</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">sin A = 2sin(A/2)cos(A/2)</p>
+</div>
+
+<div class="topic">
+    <h2>Sine in Terms of Half Angle Tangent</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">sin A = 2tan(A/2)/(1 + tan²(A/2))</p>
+</div>
+
+<div class="topic">
+    <h2>Cosine Half Angle Formula</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">cos A = 1 − 2sin²(A/2)</p>
+    <p>Also, cos A = 2cos²(A/2) − 1.</p>
+</div>
+
+<div class="topic">
+    <h2>Cosine in Terms of Half Angle Tangent</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">cos A = (1 − tan²(A/2))/(1 + tan²(A/2))</p>
+</div>
+
+<div class="topic">
+    <h2>Tangent Half Angle Formula</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">tan A = 2tan(A/2)/(1 − tan²(A/2))</p>
+</div>
+
+<div class="topic">
+    <h2>Tangent in Terms of Cosine Double Angle</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">tan²A = (1 − cos 2A)/(1 + cos 2A)</p>
+</div>
+
+<!-- 7. Triple Angle and Product Identity -->
+
+<div class="topic">
+    <h2>Cosine Product Identity</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">cos A · cos 2A · cos 4A · ... · cos(2ⁿ⁻¹A) = sin(2ⁿA)/(2ⁿ sin A)</p>
+</div>
+
+<!-- 8. Product to Sum Formulas -->
+
+<div class="topic">
+    <h2>Product of Sine and Cosine</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">2sin A cos B = sin(A + B) + sin(A − B)</p>
+</div>
+
+<div class="topic">
+    <h2>Product of Cosine and Sine</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">2cos A sin B = sin(A + B) − sin(A − B)</p>
+</div>
+
+<div class="topic">
+    <h2>Product of Two Cosines</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">2cos A cos B = cos(A + B) + cos(A − B)</p>
+</div>
+
+<div class="topic">
+    <h2>Product of Two Sines</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">2sin A sin B = cos(A − B) − cos(A + B)</p>
+</div>
+
+<div class="topic">
+    <h2>Difference of Sine Squares</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">sin²A − sin²B = sin(A + B)sin(A − B)</p>
+</div>
+
+<div class="topic">
+    <h2>Difference of Cosine and Sine Squares</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">cos²A − sin²B = cos(A + B)cos(A − B)</p>
+</div>
+
+<!-- 9. Sum to Product Formulas -->
+
+<div class="topic">
+    <h2>Sum of Two Sines</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">sin C + sin D = 2sin((C + D)/2)cos((C − D)/2)</p>
+</div>
+
+<div class="topic">
+    <h2>Difference of Two Sines</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">sin C − sin D = 2cos((C + D)/2)sin((C − D)/2)</p>
+</div>
+
+<div class="topic">
+    <h2>Sum of Two Cosines</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">cos C + cos D = 2cos((C + D)/2)cos((C − D)/2)</p>
+</div>
+
+<div class="topic">
+    <h2>Difference of Two Cosines</h2>
+    <h3>Trigonometry</h3>
+    <p class="formula">cos C − cos D = −2sin((C + D)/2)sin((C − D)/2)</p>
+</div>
+
+<!-- Advanced Integration Formulas -->
+
+<div class="topic">
+    <h2>Power Rule of Integration</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫xⁿ dx = xⁿ⁺¹/(n+1) + C</p>
+    <p>For n ≠ −1.</p>
+</div>
+
+<div class="topic">
+    <h2>Integration of Linear Power</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫(ax+b)ⁿ dx = (ax+b)ⁿ⁺¹/[a(n+1)] + C</p>
+    <p>For a ≠ 0 and n ≠ −1.</p>
+</div>
+
+<div class="topic">
+    <h2>Standard Inverse Tangent Integral</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ dx/(a²+x²) = (1/a)tan⁻¹(x/a) + C</p>
+    <p>For a &gt; 0.</p>
+</div>
+
+<div class="topic">
+    <h2>Standard Inverse Sine Integral</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ dx/√(a²−x²) = sin⁻¹(x/a) + C</p>
+    <p>For a &gt; 0 and |x| &lt; a.</p>
+</div>
+
+<div class="topic">
+    <h2>Logarithmic Quadratic Integral</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ x/(x²+a²) dx = ½ ln(x²+a²) + C</p>
+    <p>For a real constant a.</p>
+</div>
+
+<div class="topic">
+    <h2>Integral of Reciprocal Square Root</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ dx/√(x²+a²) = ln|x+√(x²+a²)| + C</p>
+    <p>For a &gt; 0.</p>
+</div>
+
+<div class="topic">
+    <h2>Integral of Root of Difference</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ dx/√(x²−a²) = ln|x+√(x²−a²)| + C</p>
+    <p>For a &gt; 0 and |x| &gt; a.</p>
+</div>
+
+<div class="topic">
+    <h2>Integral of Difference of Squares</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ dx/(a²−x²) = (1/2a)ln|(a+x)/(a−x)| + C</p>
+    <p>For a &gt; 0 and x ≠ ±a.</p>
+</div>
+
+<div class="topic">
+    <h2>Integral of x² Minus a²</h2>
+    <h3>Calculus - Integration</h3>
+    <p class="formula">∫ dx/(x²−a²) = (1/2a)ln|(x−a)/(x+a)| + C</p>
+    <p>For a &gt; 0 and x ≠ ±a.</p>
+</div>
+
+<!-- Additional Differentiation Formulas -->
+
+<div class="topic">
+    <h2>Chain Rule for Power Functions</h2>
+    <h3>Calculus - Differentiation</h3>
+    <p class="formula">d(uⁿ)/dx = nuⁿ⁻¹(du/dx)</p>
+</div>
+
+<div class="topic">
+    <h2>Derivative of Exponential Function</h2>
+    <h3>Calculus - Differentiation</h3>
+    <p class="formula">d(eᵘ)/dx = eᵘ(du/dx)</p>
+</div>
+
+<div class="topic">
+    <h2>Derivative of Natural Logarithm</h2>
+    <h3>Calculus - Differentiation</h3>
+    <p class="formula">d(ln|u|)/dx = (1/u)(du/dx)</p>
+    <p>For u ≠ 0.</p>
+</div>
+
+    </div>
+
+    <p id="no-results" style="display:none;">
+        No matching formulas found!
+    </p>
+
+
+</main>
+
+</body>
+<script>
+    const search = document.getElementById("search");
+
+    const formulas = document.querySelectorAll(".topic");
+
+    const noResults = document.getElementById("no-results");
+
+    search.addEventListener("input", function() {
+
+        const value = search.value.toLowerCase();
+
+        let count = 0;
+
+        formulas.forEach(function(formula) {
+
+            const text = formula.textContent.toLowerCase();
+
+            if (text.includes(value)) {
+                formula.style.display = "block";
+                count++;
+            }
+            else {
+                formula.style.display = "none";
+            }
+
+        });
+
+        if (count === 0) {
+            noResults.style.display = "block";
+        }
+        else {
+            noResults.style.display = "none";
+        }
+
+    });
+const themeToggle = document.getElementById("theme-toggle");
+
+themeToggle.addEventListener("click", function() {
+    document.body.classList.toggle("dark-mode");
+
+    if (document.body.classList.contains("dark-mode")) {
+        themeToggle.textContent = "☀️ Light Mode";
+    } else {
+        themeToggle.textContent = "🌙 Dark Mode";
+    }
+});
+document.querySelectorAll(".topic").forEach(function(card) {
+    const formula = card.querySelector(".formula");
+
+    if (!formula) return;
+
+    const button = document.createElement("button");
+    button.textContent = "📋 Copy Formula";
+    button.className = "copy-btn";
+
+    button.addEventListener("click", async function() {
+        try {
+            await navigator.clipboard.writeText(formula.textContent);
+            button.textContent = "✓ Copied!";
+
+            setTimeout(function() {
+                button.textContent = "📋 Copy Formula";
+            }, 1500);
+        } catch (error) {
+            button.textContent = "Copy unavailable";
+        }
+    });
+
+    card.appendChild(button);
+});
+
+// Favorites Feature ⭐
+
+document.querySelectorAll(".topic").forEach(function(card) {
+
+    const button = document.createElement("button");
+
+    button.className = "favorite-btn";
+    button.textContent = "☆";
+    button.title = "Add to Favorites";
+
+    const formula = card.querySelector(".formula");
+    const heading = card.querySelector("h2");
+
+    const key = "favorite_" + heading.textContent + "_" + formula.textContent;
+
+    // Check if already saved
+    if (localStorage.getItem(key) === "true") {
+        button.textContent = "⭐";
+        button.classList.add("active");
+    }
+
+    button.addEventListener("click", function() {
+
+        if (localStorage.getItem(key) === "true") {
+            localStorage.removeItem(key);
+            button.textContent = "☆";
+            button.classList.remove("active");
+            button.title = "Add to Favorites";
+        } else {
+            localStorage.setItem(key, "true");
+            button.textContent = "⭐";
+            button.classList.add("active");
+            button.title = "Remove from Favorites";
+        }
+
+    });
+
+    card.appendChild(button);
+
+});
+
+const formulaList = document.getElementById("formula-list");
+
+const groups = [
+    "Differentiation",
+    "Integration",
+    "Trigonometry"
+];
+
+groups.forEach(function(category) {
+
+    // Create a section for each category
+    const section = document.createElement("section");
+    section.className = "formula-group";
+
+    section.innerHTML = `
+        <div class="group-heading">
+            <h2>${category}</h2>
+            <span class="formula-count"></span>
+        </div>
+        <div class="group-cards"></div>
+    `;
+
+    formulaList.appendChild(section);
+
+    const cards = document.querySelectorAll(".topic");
+
+    cards.forEach(function(card) {
+        const heading = card.querySelector("h3").textContent.toLowerCase();
+
+        if (heading.includes(category.toLowerCase())) {
+            section.querySelector(".group-cards").appendChild(card);
+        }
+    });
+
+    // Calculate the number of formulas
+    const total = section.querySelectorAll(".topic").length;
+
+    section.querySelector(".formula-count").textContent =
+        total + " Formulas";
+});
+
+let showingFavorites = false;
+
+function showFavorites() {
+    showingFavorites = !showingFavorites;
+
+    const cards = document.querySelectorAll(".topic");
+
+    let count = 0;
+
+    cards.forEach(function(card) {
+        const star = card.querySelector(".favorite-btn");
+
+        const isFavorite = star &&
+                           star.classList.contains("active");
+
+        if (!showingFavorites || isFavorite) {
+            card.style.display = "block";
+            count++;
+        } else {
+            card.style.display = "none";
+        }
+    });
+
+    document.querySelectorAll(".formula-group").forEach(function(group) {
+        const visible = Array.from(
+            group.querySelectorAll(".topic")
+        ).some(function(card) {
+            return card.style.display !== "none";
+        });
+
+        group.style.display = visible ? "block" : "none";
+    });
+
+    noResults.style.display = count === 0 ? "block" : "none";
+}
+
+function showRandomFormula() {
+    const cards = document.querySelectorAll(".topic");
+
+    if (cards.length === 0) return;
+
+    // Select a random formula
+    const randomIndex = Math.floor(Math.random() * cards.length);
+    const selectedCard = cards[randomIndex];
+
+    // Get its title and formula
+    const title = selectedCard.querySelector("h2").textContent;
+    const formula = selectedCard.querySelector(".formula").textContent;
+
+    // Display the selected formula
+    document.getElementById("random-title").textContent = title;
+    document.getElementById("random-formula").textContent = formula;
+
+    document.getElementById("random-result").style.display = "block";
+}
+
+</script>
+</html>
