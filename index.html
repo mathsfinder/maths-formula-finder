@@ -863,7 +863,9 @@ document.querySelectorAll(".topic").forEach(function(card) {
             button.classList.add("active");
             button.title = "Remove from Favorites";
         }
-
+      if (showingFavorites) {
+    applyFilters();
+}
     });
 
     card.appendChild(button);
