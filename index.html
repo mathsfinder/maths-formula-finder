@@ -194,6 +194,18 @@ body.dark-mode .search-box input {
 </style>
     <script data-goatcounter="https://mathsfinder.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
+     <script>
+    var counterTimer = setInterval(function() {
+        if (window.goatcounter && window.goatcounter.visit_count) {
+            clearInterval(counterTimer);
+
+            window.goatcounter.visit_count({
+                append: '#visit-count',
+                path: 'TOTAL'
+            });
+        }
+    }, 100);
+</script>
 </head>
 <body>
     <header>
