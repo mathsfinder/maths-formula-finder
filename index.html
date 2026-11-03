@@ -205,7 +205,6 @@ body.dark-mode .search-box input {
 
 </header>
 
-
 <main>
 
     <div class="search-box">
@@ -216,10 +215,15 @@ body.dark-mode .search-box input {
         >
     </div>
 
+    <div style="text-align:center; margin: 10px 0 18px; font-size:15px;">
+        👀 Total Website Visits:
+        <strong id="visit-count">Loading...</strong>
+    </div>
+
     <div class="filters">
-    <button onclick="showFavorites()">⭐ My Favorites</button>
-    <button onclick="showRandomFormula()">🎲 Random Formula</button>
-</div>
+        <button onclick="showFavorites()">⭐ My Favorites</button>
+        <button onclick="showRandomFormula()">🎲 Random Formula</button>
+    </div>
 
 <div id="random-result" style="display:none;">
     <h2 id="random-title"></h2>
@@ -227,7 +231,7 @@ body.dark-mode .search-box input {
     <button onclick="showRandomFormula()">Try Another Formula</button>
 </div>
 
-    <div id="formula-list">
+S    <div id="formula-list">
 
         <div class="topic">
             <h2>Power Rule</h2>
